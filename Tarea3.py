@@ -87,3 +87,26 @@ plt.figure(4)
 plt.plot(y, z)
 plt.xlabel('y', fontsize=18)
 plt.ylabel('dy/ds', fontsize=18)
+
+sigma=10.
+beta=8./3.
+ro=28.
+
+def funcion_atractor_lorenz(f,s):
+    '''
+    Función que recibe un arreglo como parámetro en el cual
+    f[0]: x
+    f[1]: y
+    f[2]: z
+    f[3]: dx/ds
+    f[4]: dy/ds
+    f[5]: dz/ds
+    '''
+    dfdt=f
+    dfdt[0]=f[3]
+    dfdt[1]=f[4]
+    dfdt[2]=f[5]
+    dfdt[3]=sigma*(f[1]-f[0])
+    dfdt[4]=f[0]*(ro-f[2])-f[1]
+    dfdt[5]=f[0]*f[1]-beta*f[2]
+    return dfdt

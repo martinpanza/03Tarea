@@ -8,6 +8,8 @@ Resolución de EDOs utilizando Runge Kutta
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.integrate as integrate 
+from mpl_toolkits.mplot3d import Axes3D
 
 u=1.534
 
@@ -110,3 +112,23 @@ def funcion_atractor_lorenz(f,s):
     dfdt[4]=f[0]*(ro-f[2])-f[1]
     dfdt[5]=f[0]*f[1]-beta*f[2]
     return dfdt
+    
+f0=[1,1,1,1,1,1]
+t=np.linspace(0,100,1000)
+res=integrate.odeint(funcion_atractor_lorenz, f0, t)
+
+
+fig = plt.figure(5)
+fig.clf()
+
+ax = fig.add_subplot(111, projection='3d')
+ax.set_aspect('equal')
+
+ax.plot(res[:,3], res[:,4], res[:,5])
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+
+plt.show()
+plt.draw()

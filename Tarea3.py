@@ -43,3 +43,27 @@ def Runge_Kutta_3(y_n,z_n,h,f):
     y_n1=y_n+(1./6.)*(k_1[0]+(4.*k_2[0])+k_3[0])
     z_n1=z_n+(1./6.)*(k_1[1]+(4.*k_2[1])+k_3[1])
     return y_n1,z_n1
+    
+N_steps = 1000
+max=20.*math.pi
+h = max / N_steps
+y = np.zeros(N_steps)
+z = np.zeros(N_steps)
+
+y[0] = 0.1
+z[0] = 0
+
+i=1
+while i<N_steps:
+    y[i], z[i] = Runge_Kutta_3(y[i-1], z[i-1], h, funcion_osc_Van_Der_Pol)    
+    i+=1
+t_rk = [h * j for j in range(N_steps)]
+
+plt.figure(1)
+plt.plot(t_rk, z)
+plt.xlabel('s',fontsize=18)
+plt.ylabel('y', fontsize=18)
+plt.figure(2)
+plt.plot(y, z)
+plt.xlabel('y', fontsize=18)
+plt.ylabel('dy/ds', fontsize=18)

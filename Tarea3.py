@@ -67,3 +67,23 @@ plt.figure(2)
 plt.plot(y, z)
 plt.xlabel('y', fontsize=18)
 plt.ylabel('dy/ds', fontsize=18)
+
+y = np.zeros(N_steps)
+z = np.zeros(N_steps)
+
+y[0] = 4.0 #nuevamente, esta vez para y0=4
+z[0] = 0
+
+i=1
+while i<N_steps:
+    y[i], z[i] = Runge_Kutta_3(y[i-1], z[i-1], h, funcion_osc_Van_Der_Pol)    
+    i+=1
+
+plt.figure(3)
+plt.plot(t_rk, z)
+plt.xlabel('s',fontsize=18)
+plt.ylabel('y', fontsize=18)
+plt.figure(4)
+plt.plot(y, z)
+plt.xlabel('y', fontsize=18)
+plt.ylabel('dy/ds', fontsize=18)

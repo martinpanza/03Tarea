@@ -48,7 +48,7 @@ def Runge_Kutta_3(y_n,z_n,h,f):
     
 N_steps = 1000
 max=20.*math.pi
-h = max / N_steps
+h = max / N_steps #0.0628
 y = np.zeros(N_steps)
 z = np.zeros(N_steps)
 
